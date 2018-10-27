@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package hello;
+package com.ahmettutal;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
+import com.ahmettutal.controller.GreetingController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,20 +38,20 @@ public class ApplicationTest {
     @Test
     public void homePage() throws Exception {
         // N.B. jsoup can be useful for asserting HTML content
-        mockMvc.perform(get("/index.html"))
+        mockMvc.perform(get("/"))
                 .andExpect(content().string(containsString("Get your greeting")));
     }
 
     @Test
     public void greeting() throws Exception {
         mockMvc.perform(get("/greeting"))
-                .andExpect(content().string(containsString("Hello, World!")));
+                .andExpect(content().string(containsString("Merhaba, Tutalizm!")));
     }
 
     @Test
     public void greetingWithUser() throws Exception {
         mockMvc.perform(get("/greeting").param("name", "Greg"))
-                .andExpect(content().string(containsString("Hello, Greg!")));
+                .andExpect(content().string(containsString("Merhaba, Greg!")));
     }
 
 }
